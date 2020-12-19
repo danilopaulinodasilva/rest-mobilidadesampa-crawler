@@ -1,4 +1,7 @@
-const { response } = require("express");
+const axios = require("axios");
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const S = require('string');
 const CptmModel = require("../models/CptmModel");
 
 class CptmService {
@@ -7,12 +10,13 @@ class CptmService {
         // reaproveitar alguma coisa dentro da Classe
     }
 
-    saveAllStatusLines() {
+    async saveAllStatusLines() {
 
         await axios.get('http://www.cptm.sp.gov.br/Pages/Home.aspx', { headers: { 'Content-Type': 'text/plain' } })
 
-            .then((res) => {
+            .then(async (res) => {
 
+                // console.log("19", res);
                 const dom = new JSDOM(res.data);
 
                 // USANDO O "PERIGOSO" EVAL É EXTRAÍDO O CÓDIGO HTML
@@ -41,12 +45,15 @@ class CptmService {
                     })
                 }
 
-                resolve(statusLinhasJSON);
+                await CptmModel.saveAllStatusLines(statusLinhasJSON)
+
+                    .then((response) => { console.log('save successful in mongodb', response); res.sendStatus(200); })
+                    .catch((err) => { console.log("can't save in model", err); res.sendStatus(500); })
 
             })
 
             .catch((err) => {
-                console.log("CptmModel.js line 47", err);
+                console.log("CptmService.js line 49", err);
                 reject(err);
             });
 

@@ -1,10 +1,4 @@
-const axios = require("axios");
-const { response } = require("express");
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
-const S = require('string');
-
-const CptmSchema = require("../schemas/Cptm");
+const CptmSchema = require("../schemas/CptmSchema");
 
 class Cptm {
 
