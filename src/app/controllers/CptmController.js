@@ -20,7 +20,7 @@ class CptmController {
 
     async getAllStatusLines(req, res) {
 
-        CptmModel.getAllStatusLines()
+        await CptmModel.getAllStatusLines()
 
             .then((response) => {
                 res.json(response);
@@ -37,7 +37,7 @@ class CptmController {
 
     async getStatusByLine(req, res) {
 
-        CptmModel.getStatusByLine(req.params.linha)
+        await CptmModel.getStatusByLine(req.params.linha)
 
             .then((response) => {
                 res.json(response);
@@ -54,7 +54,7 @@ class CptmController {
 
     async deleteAll(req,res) {
 
-        CptmModel.deleteAll()
+        await CptmModel.deleteAll()
 
             .then((response) => {
                 res.json(response);
