@@ -4,7 +4,9 @@ const express = require('express'),
 const MetroController = require('../../app/controllers/MetroController');
 
 routes
-    .get('/status', MetroController.getAllStatus)
-    .get('/status/:linha', MetroController.getLineStatus)
+    .get('/status', MetroController.getAllStatusLines)
+    .get('/status/:linha', MetroController.getStatusByLine)
+    .post('/status', MetroController.saveAllStatusLines)
+    .delete('/delete', MetroController.deleteAll) // for tests purpose
 
 module.exports = routes;
