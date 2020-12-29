@@ -4,8 +4,9 @@ const express = require('express'),
 const CptmController = require('../../app/controllers/CptmController');
 
 routes
-    .get('/status', CptmController.getAllStatus)
+    .get('/status', CptmController.getAllStatusLines)
     .get('/status/:linha', CptmController.getStatusByLine)
     .post('/status', CptmController.saveAllStatusLines)
+    .delete('/delete', CptmController.deleteAll) // for tests purpose
 
 module.exports = routes;

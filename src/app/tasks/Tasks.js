@@ -5,12 +5,12 @@ module.exports = {
     cptm: () => {
 
         const args = "";
-        const taskResolution = (args, period) => {
+        const cptmTaskResolution = (args, period) => {
             return new Promise((resolve, reject) => {
                 const interval = setInterval(() => {
                     CptmService.saveAllStatusLines()
                         .then((data) => {
-                            console.log("13", data)
+                            // console.log("tasks/index.js 13", data)
                             if (data === 'failure') {
                                 clearInterval(interval);
                                 reject(Error('fail'));
@@ -23,9 +23,15 @@ module.exports = {
             });
         };
 
-        taskResolution(args, 6000)
+        // each 1 min save 
+
+        cptmTaskResolution(args, 60000)
             .then((data) => { console.log(data) })
-            .catch((err) => { console.log("??????", err) });
+            .catch((err) => { console.log("Tasks.js line 30", err) });
+
+    },
+
+    metro: () => {
 
     }
 

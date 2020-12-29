@@ -1,9 +1,9 @@
 require('dotenv').config();
 
+const cors = require('cors');
 const express = require('express');
 const routes = require('./routes');
-const cors = require('cors');
-const schedule = require('./app/schedule/CptmSchedule');
+const tasks = require('./app/tasks/Tasks');
 
 class Server {
 
@@ -12,15 +12,15 @@ class Server {
         this.cors();
         this.middlewares();
         this.routes();
-        this.schedule();
+        this.tasks();
     }
 
     middlewares() {
         this.server.use(express.json());
     }
 
-    schedule() {
-        schedule.cptm();
+    tasks() {
+        tasks.cptm();
     }
 
     cors() {

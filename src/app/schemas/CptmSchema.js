@@ -1,30 +1,41 @@
 const mongoose = require('../../config/MongoDbConfig');
 
 const CptmSchema = new mongoose.Schema({
-    linha: {
-        type: String,
-        trim: true,
-        required: [true, `A "linha" is required.`]
+
+    situacao: [{
+        _id:false,
+        codigo: {
+            type: Number,
+            required: true
+        },
+        mensagem: {
+            type: String,
+            trim: true,
+            required: true
+        },
+        status: {
+            type: String,
+            trim: true,
+            required: true
+        },
+        linha: {
+            type: String,
+            trim: true,
+            required: true
+            
+        },
+        descricao: {
+            type: String,
+            trim: true,
+            // required: true
+        }
+    }],
+    timestamp: {
+        type : Date, 
+        default: Date.now 
     },
-    status: {
-        type: String,
-        trim: true,
-        required: [true, `A "status" is required.`]
-    },
-    mensagem: {
-        type: String,
-        trim: true,
-        required: [true, `A "mensagem" is required.`]
-    },
-    codigo: {
-        type: Number,
-        required: [true, `A "codigo" is required.`]
-    },
-    descricao: {
-        type: String,
-        trim: true,
-        required: [true, `A "descricao" is required.`]
-    }
+
+
 }, { collection: 'cptm' });
 
 module.exports = mongoose.model("Cptm", CptmSchema);

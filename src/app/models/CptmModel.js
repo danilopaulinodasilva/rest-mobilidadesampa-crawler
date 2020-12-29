@@ -1,4 +1,4 @@
-const CptmSchema = require("../schemas/CptmSchema");
+const CptmSchema = require("../schemas/CptmSchema"); // esse é o model
 
 class Cptm {
 
@@ -7,21 +7,17 @@ class Cptm {
     saveAllStatusLines(body) {
 
         return new Promise(async (resolve, reject) => {
-            const ctpm = CptmSchema(
-                {
-                    "descricao": body.descricao,
-                    "codigo": body.codigo,
-                    "mensagem": body.mensagem,
-                    "status": body.status,
-                    "linha": body.linha
-                }
-            );
 
-            await ctpm.save()
-                .then((response) => resolve(response))
-                .catch((err) => {
-                    console.log(err);
-                    reject(err)
+            CptmSchema.create(body)
+
+                .then(response => {
+                    resolve();
+                })
+
+                .catch(err => {
+                    console.log("CptmModel.js line 18", err);
+                    reject(err);
+
                 });
 
         });
@@ -30,10 +26,19 @@ class Cptm {
 
     // return from mongodb 
 
-    getStatusLines() {
+    getAllStatusLines() {
+
         return new Promise(async (resolve, reject) => {
 
-
+            CptmSchema.findOne({}, {}, {
+                sort: {
+                    'timestamp': -1
+                }
+            }, (err, post) => {
+                if(err) console.log("CptmModel.js line 38", err); reject(err)
+                resolve(post.situacao);
+                
+            });
 
         });
 
@@ -41,7 +46,43 @@ class Cptm {
 
     // filter from mongodb
 
-    getStatusByLine() {
+    getStatusByLine(codigo) {
+
+        return new Promise(async (resolve, reject) => {
+
+            CptmSchema.findOne( {}, {}, {
+                sort: {
+                    'timestamp': -1
+                }
+            }, (err, post) => {
+                if(err) console.log("CptmModel.js line 58", err); reject(err)
+                resolve(post.situacao.filter(linha => linha.codigo == codigo));
+
+            });
+
+        });
+
+    }
+
+    // delete all from mongodb
+
+    deleteAll() {
+
+        return new Promise(async (resolve, reject) => {
+
+            CptmSchema.deleteMany()
+                .then(response => {
+                    resolve(response);
+
+                })
+
+                .catch(err => {
+                    console.log("CptmModel.js line 80", err);
+                    reject(err);
+
+                });
+
+        });
 
     }
 
