@@ -28,7 +28,7 @@ class CptmController {
             })
 
             .catch((err) => {
-                console.log("CptmService.js line 31", err);
+                console.log("CptmController.js line 31", err);
                 res.sendStatus(500);
 
             });
@@ -45,7 +45,7 @@ class CptmController {
             })
 
             .catch((err) => {
-                console.log("CptmService.js line 48", err);
+                console.log("CptmController.js line 48", err);
                 res.sendStatus(500);
 
             });
