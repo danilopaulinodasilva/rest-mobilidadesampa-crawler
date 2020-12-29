@@ -35,8 +35,13 @@ class Cptm {
                     'timestamp': -1
                 }
             }, (err, post) => {
-                if(err) console.log("CptmModel.js line 38", err); reject(err)
-                resolve(post.situacao);
+                if(err) {
+                    console.log("CptmModel.js line 39", err); 
+                    reject(err);
+                } else {
+                    resolve(post.situacao);
+
+                }
                 
             });
 
@@ -55,8 +60,14 @@ class Cptm {
                     'timestamp': -1
                 }
             }, (err, post) => {
-                if(err) console.log("CptmModel.js line 58", err); reject(err)
-                resolve(post.situacao.filter(linha => linha.codigo == codigo));
+                if(err) {
+                    console.log("CptmModel.js line 64", err); 
+                    reject(err);
+
+                } else {
+                    resolve(post.situacao.filter(linha => linha.codigo == codigo));
+
+                }
 
             });
 
