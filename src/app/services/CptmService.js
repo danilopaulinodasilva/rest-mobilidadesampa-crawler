@@ -22,10 +22,12 @@ class CptmService {
 
                     linhas.forEach((element, index) => {
 
+                        const status = element.querySelector(".status_normal").innerHTML;
+
                         array.push({
                             codigo: index + 7,
                             mensagem: element.getElementsByTagName("span")[1].getAttribute("data-original-title") ? element.getElementsByTagName("span")[1].getAttribute("data-original-title") : element.querySelector(".status_normal").innerHTML,
-                            status: element.querySelector(".status_normal").innerHTML,
+                            status: status, //.replace("Operação ",""),
                             linha: S(element.querySelector(".nome_linha").innerHTML).capitalize().s,
                             descricao: ""
                         });
@@ -37,7 +39,7 @@ class CptmService {
                         })
 
                         .then((response) => {
-                            console.log('save successful in mongodb');
+                            console.log('CtpmService.js line 40 save successful in mongodb');
                             resolve(response);
 
                         })

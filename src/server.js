@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const cors = require('cors');
 const express = require('express');
+const path = require('path')
 const routes = require('./routes');
 const tasks = require('./app/tasks/Tasks');
 
@@ -13,6 +14,8 @@ class Server {
         this.middlewares();
         this.routes();
         this.tasks();
+        this.ejs();
+        this.public();
     }
 
     middlewares() {
@@ -21,6 +24,7 @@ class Server {
 
     tasks() {
         tasks.cptm();
+        tasks.metro();
     }
 
     cors() {
@@ -29,6 +33,17 @@ class Server {
 
     routes() {
         this.server.use(routes);
+    }
+    
+    ejs() {
+        this.server.set('view engine', 'ejs');
+        this.server.set('views', path.join(__dirname, 'views'));
+
+    }
+
+    public() {
+        this.server.use(express.static(path.join(__dirname, 'public')));
+
     }
 
 }

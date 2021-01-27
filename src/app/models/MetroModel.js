@@ -8,7 +8,7 @@ class Metro {
 
         return new Promise(async (resolve, reject) => {
 
-            MetroSchema.create(body)
+            await MetroSchema.create(body)
 
                 .then(response => {
                     resolve();
@@ -30,13 +30,19 @@ class Metro {
 
         return new Promise(async (resolve, reject) => {
 
-            MetroSchema.findOne({}, {}, {
+            await MetroSchema.findOne({}, {}, {
                 sort: {
                     'timestamp': -1
                 }
             }, (err, post) => {
-                if(err) console.log("MetroModel.js line 38", err); reject(err)
-                resolve(post.situacao);
+                if(err) {
+                    console.log("MetroModel.js line 38", err); 
+                    reject(err);
+
+                } else {
+                    resolve(post);
+
+                }
                 
             });
 
@@ -50,7 +56,7 @@ class Metro {
 
         return new Promise(async (resolve, reject) => {
 
-            MetroSchema.findOne( {}, {}, {
+            await MetroSchema.findOne( {}, {}, {
                 sort: {
                     'timestamp': -1
                 }
@@ -70,7 +76,7 @@ class Metro {
 
         return new Promise(async (resolve, reject) => {
 
-            MetroSchema.deleteMany()
+            await MetroSchema.deleteMany()
                 .then(response => {
                     resolve(response);
 

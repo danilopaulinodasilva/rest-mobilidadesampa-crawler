@@ -1,0 +1,11 @@
+<div class="card">
+    <img src="http://placehold.it/300x15/E93F35/E93F35" class="card-img-top" alt="...">
+    <div class="card-header">
+        <img src="../images/metro.png" width="24" style="vertical-align: top;"> Linha <%-metro.situacao[2].codigo%> - <%-metro.situacao[2].linha%>
+      </div>
+  <div class="card-body">
+    <h5 class="card-title"><%-metro.situacao[2].status%></h5>
+    <p><%-metro.situacao[2].descricao %></p>
+    <small>Última atualização: <%=metro.timestamp%></small>
+  </div>
+</div>

@@ -8,7 +8,7 @@ class Cptm {
 
         return new Promise(async (resolve, reject) => {
 
-            CptmSchema.create(body)
+            await CptmSchema.create(body)
 
                 .then(response => {
                     resolve();
@@ -30,7 +30,7 @@ class Cptm {
 
         return new Promise(async (resolve, reject) => {
 
-            CptmSchema.findOne({}, {}, {
+            await CptmSchema.findOne({}, {}, {
                 sort: {
                     'timestamp': -1
                 }
@@ -38,8 +38,9 @@ class Cptm {
                 if(err) {
                     console.log("CptmModel.js line 39", err); 
                     reject(err);
+
                 } else {
-                    resolve(post.situacao);
+                    resolve(post);
 
                 }
                 
@@ -55,7 +56,7 @@ class Cptm {
 
         return new Promise(async (resolve, reject) => {
 
-            CptmSchema.findOne( {}, {}, {
+            await CptmSchema.findOne( {}, {}, {
                 sort: {
                     'timestamp': -1
                 }
@@ -81,7 +82,7 @@ class Cptm {
 
         return new Promise(async (resolve, reject) => {
 
-            CptmSchema.deleteMany()
+            await CptmSchema.deleteMany()
                 .then(response => {
                     resolve(response);
 
