@@ -5,6 +5,6 @@
 <div class="card-body">
   <h5 class="card-title"><%-metro.situacao[4].status%></h5>
   <p><%-metro.situacao[4].descricao %></p>
-  <small>Última atualização: <%=metro.timestamp%></small>
+  <small>Última atualização: <%= datefns.format(metro.timestamp,"dd/MM/yyyy HH:m:s")%></small>
 </div>
 </div>

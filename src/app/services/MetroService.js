@@ -37,7 +37,7 @@ class MetroService {
                             "codigo": element.codigo,
                             "mensagem": Utils.decodeHtml(element.msgStatus),
                             "id": element.id,
-                            "status": Utils.decodeHtml(element.status),
+                            "status": Utils.decodeHtml(element.status) == "Normal" ? "Operação Normal" : Utils.decodeHtml(element.status),
                             "linha": Utils.decodeHtml(Utils.removeLine(element.linha)),
                             "descricao": element.descricao
                         });
@@ -49,7 +49,7 @@ class MetroService {
                             "codigo": element.codigo,
                             "mensagem": Utils.decodeHtml(element.msgStatus),
                             "id": element.id,
-                            "status": Utils.decodeHtml(element.status),
+                            "status": Utils.decodeHtml(element.status) == "Normal" ? "Operação Normal" : Utils.decodeHtml(element.status),
                             "linha": Utils.decodeHtml(Utils.removeLine(element.linha)),
                             "descricao": element.descricao
                         });
